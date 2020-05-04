@@ -1,0 +1,33 @@
+import java.util.*;
+  
+  public class Main{
+  
+  public static void main(String[] args) {
+      Scanner scn = new Scanner(System.in);
+      
+  
+       // write ur code here
+       int t = scn.nextInt();
+       for(int i = 0; i<t; i++){
+           int count = 0;
+           int n =  scn.nextInt();
+           
+           for(int div =2; div*div<=n; div++){  // to be noted div<= sqrt(n), div !< sqrt(n) so we will loop from 2 to sqrt of n let say
+           // n = 64; div-> 2  to 8  only if any number btw 2 and 8 divides it then it is not a prime number;
+               if(n%div==0){
+                   count++;
+                   break;
+               }
+           }
+           if(count == 0){
+           System.out.println("prime");
+       }else{
+           System.out.println("not prime");
+       }
+           
+       }
+       
+       
+  
+   }
+  }
