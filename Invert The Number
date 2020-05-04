@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) {
+  // write your code here  
+  Scanner scn =  new Scanner(System.in);
+  int n = scn.nextInt();
+  int inverted = 0;
+  int opos = 1;
+  while(n!=0){
+      int odig = n%10;
+      int ipos = odig;
+      int idig = opos;
+      inverted =  inverted+idig*(int)Math.pow(10,ipos-1);
+      n = n/10;
+      opos++;
+      
+  }
+  
+  System.out.println(inverted);
+ 
+ }
+}
