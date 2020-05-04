@@ -1,0 +1,35 @@
+import java.util.*;
+    
+    public class Main{
+    
+    public static void main(String[] args) {
+      // write your code here  
+        Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    // 1. find number of digits
+    int digits = 0;
+    int temp = n;
+    do{
+        temp = temp/10;
+        digits++;
+    }while(temp!=0);
+    
+    //2. Set Divisor
+    int div = 1;
+  for(int i = 1; i<=digits-1; i++){
+      div = div*10;
+      
+  }
+  // print no.
+  while(div != 0){
+      int q = n /div;
+      int r = n%div;
+      System.out.println(q);
+      n = r;
+      div=div/10;
+  }
+
+    
+    
+     }
+    }
