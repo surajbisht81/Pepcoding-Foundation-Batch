@@ -1,0 +1,45 @@
+1								1	
+1	2						2	1	
+1	2	3				3	2	1	
+1	2	3	4		4	3	2	1	
+1	2	3	4	5	4	3	2	1	
+
+
+import java.util.*;
+      
+      public class Main{
+      
+      public static void main(String[] args) {
+          Scanner scn = new Scanner(System.in);
+          int n = scn.nextInt();
+          int nstr = 1;
+          
+          int nspc = 2*n-3;
+          for(int i = 1; i<=n; i++){
+              int c=1;
+              for(int j = 1; j<=nstr; j++){
+                 
+                  System.out.print(c+"\t");
+                   c++;
+              }
+              for(int k = 1;k<=nspc;k++){
+                  System.out.print("\t");
+              }
+              if(i==n){
+                  nstr--;
+                  c--;
+              }
+               for(int z = 1; z<=nstr; z++){
+                   c--;
+                  System.out.print(c+"\t");
+              }
+              
+              nstr++;
+              
+              nspc-=2;
+              System.out.println();
+              
+          }
+      
+       }
+      }
