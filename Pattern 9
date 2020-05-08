@@ -1,0 +1,32 @@
+*				*	
+	*		*		
+		*			
+	*		*		
+*				*	
+
+for left to right diagonal of matrix; row==column and for right to left diagonal row+column==n+1;
+
+then let i be  the row and j be the column
+
+import java.io.BufferedReader; 
+import java.io.InputStreamReader; 
+import java.util.Scanner;
+      public class Main{      
+      public static void main(String[] args)
+      {
+          Scanner scn = new Scanner(System.in);
+          int n = scn.nextInt();
+          for(int i = 1; i <= n; i++){
+          for(int j  = 1; j<=n; j++){
+                   if(i==j || i+j==n+1){ //if any of the condition for left to right or right to left diagonal is correct the print * 
+                   // else print tab or space
+                       System.out.print("*\t");
+                   }else{
+                       System.out.print("\t");
+                   }
+               }
+              System.out.println();
+          }
+       }
+      }
+
