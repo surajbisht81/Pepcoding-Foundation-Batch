@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        // write your code 
+    Scanner scn = new Scanner(System.in);
+    int n1 = scn.nextInt();
+    int m1 = scn.nextInt();
+    int [][] arr = new int[n1][m1];
+    for(int i = 0; i<n1; i++)
+    {
+        for(int j = 0; j<m1; j++)
+        {
+            arr[i][j]=scn.nextInt();
+        }
+    }
+    int tne = n1*m1;  // total number of elements
+    int count = 0; //it will count numbers of elements in each iteration 
+    int rmin = 0;
+    int cmin = 0;
+    int rmax = arr.length-1;
+    int cmax = arr[0].length-1;
+    while(count<tne){
+        for(int i = rmin; i<=rmax && count<tne; i++)
+        {
+            System.out.println(arr[i][cmin]);
+            count++;
+        }
+        cmin++;
+        for(int j = cmin; j<=cmax && count<tne; j++){
+            System.out.println(arr[rmax][j]);
+            count++;
+        }
+        rmax--;
+        
+        for(int k=rmax; k>=rmin && count<tne; k--){
+            System.out.println(arr[k][cmax]);
+            count++;
+        }
+        cmax--;
+        for(int j = cmax; j >= cmin && count < tne; j--){
+            System.out.println(arr[rmin][j]);
+            count++;
+         }
+         rmin++;
+
+    }
+
+    }
+}
