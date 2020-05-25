@@ -33,7 +33,8 @@ public class Main {
     int col = 0;
     
     while(true){
-    
+    // our direction are 4  arr[row][col] will be  0 and 1 only 1 % 4 = 1 and 0 % 4 = 0;
+    // so that dir's should be under 4
     dir = (dir+arr[row][col])%4;
     if(dir== 0){
         col++;
