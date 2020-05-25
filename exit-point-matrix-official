@@ -32,7 +32,7 @@ public class Main {
     int row = 0;
     int col = 0;
     
-    while(true){
+    while(true){ //while(row!=n || col!=m)
     // our direction are 4  arr[row][col] will be  0 and 1 only 1 % 4 = 1 and 0 % 4 = 0;
     // so that dir's should be under 4
     dir = (dir+arr[row][col])%4;
