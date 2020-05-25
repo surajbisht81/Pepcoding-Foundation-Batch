@@ -10,9 +10,7 @@
 
 import java.io.*;
 import java.util.*;
-
 public class Main {
-
     public static void main(String[] args) throws Exception {
     Scanner scn = new Scanner(System.in);
     int n = scn.nextInt();
@@ -28,13 +26,9 @@ public class Main {
     // if dir = 1 ->South
     // if dir = 2 ->West
     // if dir = 3 ->North
-    
     int row = 0;
     int col = 0;
-    
-    while(true){ //while(row!=n || col!=m)
-    // our direction are 4  arr[row][col] will be  0 and 1 only 1 % 4 = 1 and 0 % 4 = 0;
-    // so that dir's should be under 4
+    while(row!=n || col!=m){ // or use while(true)
     dir = (dir+arr[row][col])%4;
     if(dir== 0){
         col++;
@@ -60,10 +54,8 @@ public class Main {
         col--;
         break;
     }
-        
     }
     System.out.println(row);
     System.out.println(col);
-    
     }
 }
