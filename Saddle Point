@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int [][] arr =  new int[n][n];
+        for(int i = 0; i<n; i++){
+            for(int j = 0; j<n; j++){
+                arr[i][j]=scn.nextInt();
+            }
+            
+        }
+        
+       for(int i = 0; i<arr[0].length; i++){
+        int minelem = arr[i][0];
+        int mincol = 0;
+        for(int j =1; j<n; j++){
+            if(minelem>arr[i][j]){
+                minelem = arr[i][j];
+                mincol = j;
+            }
+        }
+            int flag = 1; // intitially 
+          for(int k = 0; k<n; k++){
+              if(minelem<arr[k][mincol]){
+                  flag = 0; // if we find sdlpoint<any number at any other index we break
+                  break; //update flag to 0
+              }
+          }
+          if(flag == 1){ // saddlepoint> other elements then print;
+              System.out.println(minelem);
+              return;
+          }
+       }
+    System.out.println("Invalid input");
+        //
+    }
+
+}
