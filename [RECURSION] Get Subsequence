@@ -1,0 +1,55 @@
+Question
+ 1. You are given a string str.
+2. Complete the body of getSS function - without changing signature - to calculate all subsequences of str.
+Use sample input and output to take idea about subsequences.
+
+Note -> The online judge can't force you to write the function recursively but that is what the spirit of question is.
+Write recursive and not iterative logic. The purpose of the question is to aid learning recursion and not test you.
+
+                               
+Input Format
+A string str
+Output Format
+Contents of the arraylist containing subsequences as shown in sample output
+Constraints
+0 <= str.length <= 20
+Sample Input
+abc
+Sample Output
+[, c, b, bc, a, ac, ab, abc]
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+    Scanner scn = new Scanner(System.in);
+    String str = scn.nextLine();
+    ArrayList<String> ss = gss(str);
+    System.out.println(ss);
+    }
+    public static ArrayList<String> gss(String str) {
+    if(str.length() == 0){
+            ArrayList<String> res = new ArrayList<>();
+            res.add("");
+            return res;
+        }
+        String roq =  str.substring(1);
+        ArrayList<String> recAns = gss(roq);
+        char ch =  str.charAt(0);
+        ArrayList<String> myAns = new ArrayList<> ();
+        // na wali choice
+        for(int i = 0; i<recAns.size(); i++){
+            myAns.add(recAns.get(i));
+        }
+        // haan wali choice 
+        for(int i = 0; i<recAns.size(); i++){
+            myAns.add(ch+recAns.get(i));
+        }
+        return myAns;
+    }
+
+}
