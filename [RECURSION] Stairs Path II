@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    ArrayList<String> ans = getStairPaths(n);
+    System.out.println(ans);
+    }
+    public static ArrayList<String> getStairPaths(int n) {
+        if(n<=0){
+            ArrayList<String> bc = new ArrayList<> ();
+            if(n==0){
+                bc.add("");
+            }
+            return bc;
+        }
+        // ek a jump
+        ArrayList<String> rres1 = getStairPaths(n - 1);
+        // 2 ka jump
+        ArrayList<String> rres2 = getStairPaths(n - 2);
+        //3 ka jump
+        ArrayList<String> rres3 = getStairPaths(n - 3);
+        // result array
+        ArrayList<String> mres = new ArrayList<>();
+        // 1 ka jump so 1 + rres1.get(i)
+        for(int i=0; i<rres1.size();i++){
+            mres.add(1 + rres1.get(i));
+        }
+         for(int i=0; i<rres2.size();i++){
+            mres.add(2 + rres2.get(i));
+        }
+         for(int i=0; i<rres3.size();i++){
+            mres.add(3 + rres3.get(i));
+        }
+        return mres; 
+    }
+
+}
