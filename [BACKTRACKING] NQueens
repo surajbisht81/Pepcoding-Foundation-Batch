@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int n=scn.nextInt();
+        int [][] chess = new int[n][n];
+        printNQueens(chess,"",0);
+        System.out.println();
+    }
+
+    public static void printNQueens(int[][] chess, String ans, int row) {
+        if(row== chess.length){
+            System.out.println(ans+".");
+            return;
+            }
+            //for each column check it T/F
+            for(int col = 0; col<chess[0].length; col++){
+                if(isQueenSafe(chess,row,col)){
+                    // if True-> fill it by 1
+                    chess[row][col]=1;
+                    printNQueens(chess,ans+row+"-"+col+", ",row+1);
+                    // backtrack-> if for another [row][col]'s 1 kills this 1
+                    // we need to remove it then again we need to fill it
+                    chess[row][col]=0;
+                    
+                }
+            }
+    }
+    public static boolean isQueenSafe(int [][]chess,int row,int col){
+        for(int crow = row,ccol=col; crow>=0 && ccol>=0; crow--,ccol--){
+            if(chess[crow][ccol]==1){
+                return false;
+            }
+        }
+        for(int crow = row; crow >=0; crow--){
+            if(chess[crow][col]==1){
+                return false;
+            }
+        }
+        for(int crow = row,ccol=col; crow>=0 && ccol<chess[0].length; crow--, ccol++){
+           if(chess[crow][ccol]==1){
+               return false;
+           } 
+        }
+        return true;
+    }
+}
