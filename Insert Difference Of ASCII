@@ -1,0 +1,21 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main() {
+    string str;
+    cin>>str;
+    for(size_t i = 0; i<str.size(); i++){
+        int idx2 = 'a'-str[i];
+        int idx1 = 'a'-str[i+1];
+        int id = idx2-idx1;
+        if(i==str.size()-1){
+            cout<<str[i];
+            break;
+        }
+        cout<<str[i]<<id;
+    }
+    return 0;
+}
