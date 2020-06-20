@@ -1,0 +1,75 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+  
+
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String exp = br.readLine();
+    evaluate(exp);
+
+    // code
+ }
+ public static void evaluate(String exp){
+     Stack<Integer> nums = new Stack<> ();
+     Stack<Character> optrs = new Stack<> ();
+     for(int i = 0; i<exp.length(); i++){
+         char ch = exp.charAt(i);
+         if(ch>='0' && ch<='9'){
+             nums.push(ch-'0');
+         }else if(ch =='('){
+             optrs.push(ch);
+         }else if(ch==')'){
+             while(optrs.peek() !='('){
+                 char optr = optrs.pop();
+                 int op2 = nums.pop();
+                 int op1 = nums.pop();
+                 int ans = solve(optr,op1,op2);
+                 nums.push(ans);
+             }
+             optrs.pop();
+         }else if(ch == '-' || ch =='+' || ch =='*' || ch =='/'){
+             while(optrs.size() > 0 && oprts.peek() != '(' && pred(optrs.peek()) >= pred(ch)){
+                 char optr = optrs.pop();
+                 int op2 = nums.pop();
+                 int op1 = nums.pop();
+                 int ans = solve(optr,op1,op2);
+                 nums.push(ans);
+             }
+             optrs.push(ch);
+         }
+     }
+     while(optrs.size()>0){
+         char optr = optrs.pop();
+                 int op2 = nums.pop();
+                 int op1 = nums.pop();
+                 int ans = solve(optr,op1,op2);
+                 nums.push(ans);
+         
+     }
+     System.out.println(nums.peek());
+     
+ }
+ public static int pred(char optr){
+     if(optr == '-' || optr == '+'){
+         return 1;
+     }else {
+         return 2;
+     }
+     
+ }
+ 
+ public static int solve(char optr, int op1, int op2){
+     if(optr == '+'){
+         return op1+op2;
+     }else if(optr=='-'){
+         return op1-op2;
+     }else if(optr == '*'){
+         return op1*op2;
+     }else{
+         return op1/op2;
+     }
+ }
+ 
+}
