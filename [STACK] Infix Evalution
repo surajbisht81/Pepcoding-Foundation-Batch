@@ -30,7 +30,7 @@ public static void main(String[] args) throws Exception {
              }
              optrs.pop();
          }else if(ch == '-' || ch =='+' || ch =='*' || ch =='/'){
-             while(optrs.size() > 0 && oprts.peek() != '(' && pred(optrs.peek()) >= pred(ch)){
+             while(optrs.size() > 0 && optrs.peek() != '(' && pred(optrs.peek()) >= pred(ch)){
                  char optr = optrs.pop();
                  int op2 = nums.pop();
                  int op1 = nums.pop();
