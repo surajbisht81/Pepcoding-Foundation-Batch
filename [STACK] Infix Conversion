@@ -1,0 +1,81 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+  
+
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String exp = br.readLine();
+    Stack<String> preStack =  new Stack<> ();
+    Stack<String> postStack=  new Stack<> ();
+    Stack<Character> optr = new Stack<>();
+    
+    for(int i = 0; i<exp.length(); i++){
+        char ch = exp.charAt(i);
+        
+        if(ch =='('){
+            optr.push(ch);
+        }else if((ch >='0' && ch <= '9') || (ch >='a' && ch <= 'z') || (ch >='A' && ch <= 'Z')){
+            preStack.push(ch+"");
+            postStack.push(ch+"");
+        }else if(ch == '+' || ch == '-' || ch == '*' || ch == '/'){
+           while(optr.size()>0 &&  optr.peek() != '(' && pred(ch) <= pred(optr.peek()))
+           {
+          char op = optr.pop();
+
+          String postval2 = postStack.pop();
+          String postval1 = postStack.pop();
+          postStack.push(postval1 + postval2 + op);
+
+          String preval2 = preStack.pop();
+          String preval1 = preStack.pop();
+          preStack.push(op + preval1 + preval2);  
+           }
+           optr.push(ch);
+        }else if(ch==')')
+        {
+          while(optr.size()>0 &&  optr.peek() != '('){
+          char op = optr.pop();
+
+          String postval2 = postStack.pop();
+          String postval1 = postStack.pop();
+          postStack.push(postval1 + postval2 + op);
+
+          String preval2 = preStack.pop();
+          String preval1 = preStack.pop();
+          preStack.push(op + preval1 + preval2);  
+           }
+           if (optr.size() > 0) {
+          optr.pop();
+        }
+        }
+    }
+    
+    while (optr.size() > 0) {
+      char op = optr.pop();
+
+      String postval2 = postStack.pop();
+      String postval1 = postStack.pop();
+      postStack.push(postval1 + postval2 + op);
+
+      String preval2 = preStack.pop();
+      String preval1 = preStack.pop();
+      preStack.push(op + preval1 + preval2);
+    }
+
+    System.out.println(postStack.peek());
+    System.out.println(preStack.peek());
+  }
+  
+   public static int pred(char optr){
+     if(optr == '-' || optr == '+'){
+         return 1;
+     }else {
+         return 2;
+     }
+     
+ }
+ 
+ 
+}
