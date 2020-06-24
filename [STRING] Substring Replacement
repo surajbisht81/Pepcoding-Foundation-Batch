@@ -1,0 +1,25 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+   string str;
+    int i;
+    cin>>str>>i;
+    string pat = "hi";
+    string rep = "pep";
+    size_t pos = str.find(pat);
+    while(pos!=string::npos){
+         // Replace this occurrence of Sub String
+         str.replace(pos, pat.size(), rep);
+        // Get the next occurrence from the current position
+        pos =str.find(pat, pos + rep.size());
+    }
+    cout<<str[1]<<endl;
+    cout<<str;
+    return 0;
+}
