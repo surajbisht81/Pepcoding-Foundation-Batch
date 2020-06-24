@@ -1,0 +1,30 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+void solve(string &S) {
+    char prev = '\0';
+    for (auto it = S.begin(); it != S.end(); it++)
+    {
+        if (prev == *it) {
+            S.erase(it);
+            it--;
+        }
+        else {
+            prev = *it;
+        }
+    }
+}
+
+int main() {
+   string str;
+    int i;
+    cin>>str>>i;
+   solve(str);
+    cout<<str[i]<<endl;
+    cout<<str;
+    
+    return 0;
+}
