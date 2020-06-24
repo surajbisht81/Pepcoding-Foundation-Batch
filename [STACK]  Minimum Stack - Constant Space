@@ -1,0 +1,66 @@
+  public static class MinStack {
+    Stack<Integer> data;
+    int min;
+
+    public MinStack() {
+      data = new Stack<>();
+    }
+
+    int size() {
+      return data.size();
+    }
+
+    void push(int val) {
+      if (size() == 0) {
+        min = val;
+        data.push(val);
+      } else if (val >= min) {
+        data.push(val);
+      } else {
+        data.push(val + val - min); // encoding
+        min = val;
+      }
+    }
+
+    int pop() {
+      if (size() == 0) {
+        System.out.println("Stack underflow");
+        return -1;
+      } else {
+        int val = data.pop();
+
+        if (val >= min) {
+          int v2r = val;
+          return v2r;
+        } else {
+          int v2r = min;
+          min = 2 * min - val;
+          return v2r;
+        }
+      }
+    }
+
+    int top() {
+      if (size() == 0) {
+        System.out.println("Stack underflow");
+        return -1;
+      } else {
+        int val = data.peek();
+
+        if (val >= min) {
+          return val;
+        } else {
+          return min;
+        }
+      }
+    }
+
+    int min() {
+      if (size() == 0) {
+        System.out.println("Stack underflow");
+        return -1;
+      } else {
+        return min;
+      }
+    }
+  }
