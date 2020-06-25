@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+string removeHi(string str){
+    string pat = "hi";
+    if(str.size()==0){
+        return "";
+    }
+    if(str.substr(0,2)==pat){
+        return removeHi(str.substr(2));
+    }
+    // what if somethis like this -> "hhhihiihhhi"
+    // to oversome this error we used this str.substr(0,1). 
+return str.substr(0,1)+removeHi(str.substr(1));
+    
+}
+int CountHi(string str){
+    string pat = "hi";  
+    if(str.size()==0){
+        return 0;
+    }
+    string rndm = str.substr(0,2);
+    if(rndm==pat){
+      return 1+CountHi(str.substr(2));
+    }
+    return CountHi(str.substr(1));
+}
+int main(){
+    string str;
+    cin>>str;
+    int i;
+    cin>>i;
+    cout<<CountHi(str)<<endl;
+    string res = removeHi(str);
+    cout<<res[i]<<endl;
+    cout<<res<<endl;
+    
+    
+    
+    return 0;
+}
