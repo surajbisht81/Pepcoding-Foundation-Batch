@@ -1,0 +1,27 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+string solve(string str)
+{
+    if(str.length()<=1){
+        return str;
+    }
+    if(str.substr(0,2)!="hi"){
+       return  str.substr(0,1)+solve(str.substr(1));
+    }
+    return "pep" + solve(str.substr(2));
+}
+int main() {
+   string str;
+    int i;
+    cin>>str>>i;
+    string st = solve(str);
+    cout<<st[i]<<endl;
+    cout<<st;
+    //hhipepe//pep//hh <- special base case
+    
+    return 0;
+}
