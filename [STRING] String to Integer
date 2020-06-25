@@ -1,0 +1,26 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+long solve(string str) {
+   if(str.length()==2){
+       return long(str[0]-'0')*10 + long(str[1]-'0');
+   }
+    return (long(str[0]-'0')*pow(10,str.length()-1))+solve(str.substr(1));
+}
+
+int main() {
+ string str;
+    int div ;
+   cin>>str>>div;
+    if(str.length()==1){
+        cout<<int(str[0]-'0');
+        return 0;
+    }
+    cout<<(solve(str)/div);
+   
+    return 0;
+}
