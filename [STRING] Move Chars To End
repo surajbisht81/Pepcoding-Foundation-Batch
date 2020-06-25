@@ -1,0 +1,39 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+string res1 = "", res2 = ""; 
+
+string solve(string str,char ch) 
+{ 
+    // Take length of string 
+    int len = str.length(); 
+    if(len==0){
+        return "";
+    }
+  
+    string st = str.substr(0,1);
+    char c = st[0];
+    if(c==ch){
+        res1+=c;
+    }else{
+        res2+=c;
+    }
+    return solve(str.substr(1),ch);
+} 
+
+int main() {
+    int i;
+    string str;
+    char ch;
+     cin>>str>>ch>>i;
+    solve(str,ch);
+    string ans = res2+res1;
+    cout<<ans[i]<<endl;
+    cout<<ans;
+
+    
+    return 0;
+}
