@@ -1,0 +1,46 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    int testcases;
+    cin>>testcases;
+    while(testcases--){
+        int month;
+        string firstDay;
+        cin>>month>>firstDay;
+        string days[] = {"mon", "tues", "wed", "thurs", "fri", "sat", "sun"};
+        int count[7];
+        for(int i = 0;i<7; i++){
+            count[i]=4;
+        }
+        int rndm = month-28;
+        int idx = 0;
+        for(int i = 0;i<7; i++){
+            if(firstDay==days[i]){
+                idx = i;
+                break;
+            }
+        }
+        for(int i = idx; i<idx+rndm; i++){
+            if(i>6){
+                count[i%7]=5;
+            }else{
+                count[i]=5;
+            }            
+        }
+        for(int i = 0; i<7; ++i){
+            cout<<count[i]<<" ";
+        }
+        cout<<endl;
+        
+        
+        
+    }
+    
+    return 0;
+}
