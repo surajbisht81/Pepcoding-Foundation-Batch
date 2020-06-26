@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+// with NO_OVERLAP
+int solveNO(string str){
+ if(str.length()<2){
+   return 0;
+ }
+ if(str.length()>2 && str.substr(0,3)=="aaa"){
+   return 1 + solveNO(str.substr(3));
+ }
+ return solveNO(str.substr(1));
+}
+// WITH OVERLAP
+int solve(string str){
+ if(str.length()<2){
+   return 0;
+ }
+ if(str.length()>2 && str.substr(0,3)=="aaa"){
+   return 1 + solve(str.substr(1));
+ }
+ return solve(str.substr(1));
+}
+
+int main() {
+    string str;
+    cin>>str;
+    cout<< solve(str)<<endl;
+    cout<<solveNO(str);
+    
+    return 0;
+}
