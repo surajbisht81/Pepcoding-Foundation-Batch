@@ -1,0 +1,46 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+string solve(string str){
+    if(str.size()==0){
+        return str;
+    }
+    if(str.substr(0,2)=="hi" and str.substr(0,3)!="hit"){
+        return "" + solve(str.substr(2));
+    }else if(str.substr(0,3)=="hit"){
+        return "hit" + solve(str.substr(3));
+    }
+    return str.substr(0,1)+ solve(str.substr(1));    
+}
+
+long CountHi(string str){
+    if(str.length()==0){
+        return 0;
+    }  
+    if(str.substr(0,2)=="hi" and (str.substr(0,3)!="hit")){
+        return 1+CountHi(str.substr(2));
+    }else if(str.substr(0,3)=="hit"){
+        return CountHi(str.substr(3));
+    }
+    return CountHi(str.substr(1));
+}
+int main() {
+    string str;
+    int i;
+    cin>>str>>i;
+    if(str.length()<2)
+    {
+        cout<<""<<endl;  
+        return 0;
+    }
+    cout<<CountHi(str)<<endl;
+    string st = solve(str);
+    cout<<st[i]<<endl;
+    cout<<st<<endl;
+    
+    
+    return 0;
+}
