@@ -1,0 +1,100 @@
+// C++ To Count Number of Subsequences 
+====================================================================================
+using namespace std;
+
+int cnt(string str, int count,string ans){
+    if(str.length()==0){
+       count++;
+        return count;
+    }
+    count = cnt(str.substr(1),count,ans);
+    count = cnt(str.substr(1),count,ans+str.substr(0,1));
+    return count;
+}
+int main() {
+    string str;
+    cin>>str;
+    int x = cnt(str,0,"");
+    cout<<x;
+    
+    return 0;
+}
+=======================================================================================
+Sample Input 0
+
+abc
+Sample Output 0
+
+8
+[, a, b, ab, c, ac, bc, abc]
+
+c
+b
+bc
+a
+ac
+ab
+abc
+
+
+
+import java.io.*;
+import java.util.*;
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        String str = scn.next();
+        int x = Count(str,0,"");
+        System.out.println(x);
+        
+        printArrayList(getSub(str));
+        System.out.println("]"); 
+        printSeq(str,"");
+    }
+   public static int Count(String str, int count,String ans){
+    if(str.length()==0){
+       count++;
+        return count;
+    }
+    count = Count(str.substring(1),count,ans);
+    count = Count(str.substring(1),count,ans+str.substring(0,1));
+    return count;
+}
+
+
+   public static void printSeq(String str,String ans){
+       if(str.length()==0){
+           System.out.println("" + ans ); 
+            return;
+       }
+        printSeq(str.substring(1),ans);
+       printSeq(str.substring(1),ans+str.substring(0,1));      
+   }
+  public static ArrayList<String> getSub(String str){
+      if(str.length()==0){
+          ArrayList<String> empty = new ArrayList<>();
+          empty.add("");
+          return empty;
+      }
+      ArrayList<String> subseq = getSub(str.substring(1));
+      ArrayList<String> res = new ArrayList<>();
+      
+      for(String x : subseq){
+          res.add(x);
+          res.add(str.substring(0,1)+x);
+      }     
+   return res;   
+  }
+ public static void printArrayList(ArrayList<String> arrL) 
+    { 
+     System.out.print("[");
+        for (int i = 0; i < arrL.size(); i++){
+            System.out.print(arrL.get(i));
+            if(i!= arrL.size()-1){
+                System.out.print(", ");
+            }
+        }
+    } 
+
+}
