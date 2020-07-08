@@ -1,0 +1,36 @@
+     public static Node findMid(Node head){
+        Node temp2 = head;
+        Node temp = new Node();
+        temp = head;
+        temp2 = head;
+        while(temp.next!=null && temp.next.next!=null){
+        
+            temp2=temp2.next;
+            temp = temp.next.next;
+        }
+        
+        return temp2;
+        
+        
+    }
+    
+
+
+    public static LinkedList mergeSort(Node head, Node tail){
+      // write your code 
+      if(head==tail){
+          
+          LinkedList baseAns = new LinkedList();
+          baseAns.addLast(head.data);
+          return baseAns;
+      }
+      Node mid = findMid(head);
+      Node midNext = mid.next;
+      mid.next=null; // saperated our list
+      LinkedList Lans = mergeSort(head,mid);
+      LinkedList Rans = mergeSort(midNext,tail);
+      LinkedList ans = mergeTwoSortedLists(Lans,Rans);
+      mid.next = midNext;
+      return ans;
+    }
+  }
