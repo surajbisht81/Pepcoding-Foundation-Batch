@@ -1,0 +1,22 @@
+ public int mid(){
+        Node temp2 = head;
+        Node temp = head;
+        while(temp!=tail && temp.next!=tail){
+        
+            temp2=temp2.next;
+            temp = temp.next.next;
+        }       
+        return temp2.data;
+    }
+    
+    
+    ~oputput:
+10
+10
+30
+20
+20
+40
+20
+40
+List is empty
