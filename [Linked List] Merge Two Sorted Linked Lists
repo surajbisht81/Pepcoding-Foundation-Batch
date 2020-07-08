@@ -1,0 +1,28 @@
+public static LinkedList mergeTwoSortedLists(LinkedList l1, LinkedList l2) {
+     LinkedList newList =  new LinkedList();
+     Node temp1 = l1.head;
+     Node temp2 =  l2.head;
+     
+     while(temp1!=null && temp2!=null){
+         if(temp1.data>temp2.data){
+             newList.addLast(temp2.data);
+             temp2=temp2.next;
+         }else{
+             newList.addLast(temp1.data);
+             temp1=temp1.next;
+         }
+     }
+     while(temp1!=null){
+         newList.addLast(temp1.data);
+             temp1=temp1.next;
+         
+     }
+     while(temp2!=null){
+          newList.addLast(temp2.data);
+             temp2=temp2.next;
+         
+     }
+     return newList;
+     
+    }
+  }
