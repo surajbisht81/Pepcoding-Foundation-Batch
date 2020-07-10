@@ -1,0 +1,18 @@
+public void removeDuplicates(){
+     LinkedList helper = new LinkedList();
+     // this stores address of passed LinkedList 
+     while(this.size>0){
+         int val = this.getFirst();
+         this.removeFirst();
+         if(helper.size ==0 || helper.tail.data !=val){
+             helper.addLast(val);
+         }
+     }
+     
+     this.head = helper.head;
+     this.tail = helper.tail;
+     this.size = helper.size();
+     
+     
+     
+    }
