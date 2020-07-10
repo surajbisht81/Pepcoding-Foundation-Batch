@@ -1,0 +1,30 @@
+public void oddEven(){
+      LinkedList Even = new LinkedList();
+      LinkedList Odd  = new LinkedList();
+      while(this.size>0){
+        int currVal = this.getFirst();
+        this.removeFirst();
+        if(currVal%2==0){
+            Even.addLast(currVal);
+        }else{
+            Odd.addLast(currVal);
+        }
+          
+      }
+      if(Odd.size>0 && Even.size >0){
+          Odd.tail.next = Even.head;
+          this.head= Odd.head;
+          this.tail = Even.tail;
+          this.size = Odd.size + Even.size;
+      }else if(Odd.size>0){
+          this.head = Odd.head;
+          this.tail = Odd.tail;
+          this.size = Odd.size;
+      }else{
+          this.head = Even.head;
+          this.tail = Even.tail;
+          this.size = Even.size;
+      }
+     
+      
+    }
