@@ -1,0 +1,33 @@
+public boolean IsPalindrome() {
+      // write your code here
+      if(this.size<0){
+          return true;
+      }
+      
+      Node mid = head;
+      Node fast = this.head;
+      while(fast!=this.tail && fast.next!=this.tail){
+          mid = mid.next;
+          fast = fast.next.next;
+      }
+      LinkedList helper=  new LinkedList();
+      helper.head = mid.next;
+      helper.tail = this.tail;
+      helper.size = this.size/2;
+      mid.next = null;
+      helper.reversePI();
+      Node t1 = this.head;
+      Node t2 = helper.head;
+      boolean isPalin = true;
+      while(t1!=null && t2!=null){
+          if(t1.data!=t2.data){
+              isPalin = false;
+              break;
+          }
+          t1 = t1.next;
+          t2 = t2.next;
+      }
+       return isPalin;
+      
+    }
+  }
