@@ -1,0 +1,28 @@
+    public void kReverse(int k) {
+      // write your code here
+      if(k>this.size)
+      {
+          return ;
+      }
+      LinkedList ans = new LinkedList();
+      int tsize = this.size;
+      
+      while(this.size>=k){
+          LinkedList helper = new LinkedList();
+          while(helper.size<k){
+              int val = this.getFirst();
+              this.removeFirst();
+              helper.addFirst(val);
+              
+          }
+          if(ans.head==null){
+              ans.head = helper.head;
+              ans.tail = helper.tail;
+          }
+          else{
+              if(ans.head!=null){
+                  ans.tail.next = helper.head;
+                  ans.tail = helper.tail;
+              }
+          }
+      }
