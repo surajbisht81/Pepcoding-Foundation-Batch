@@ -1,0 +1,29 @@
+  public static int addHelper(Node n1, Node n2, int pv1, int pv2, LinkedList ans){
+    if(pv1 == 0 && pv2 == 0){
+        return 0;
+    }
+    if(pv1>pv2){
+        int carry = addHelper( n1.next,n2,pv1-1,pv2,ans);
+        int sum = carry + n1.data;
+        ans.addFirst(sum%10);
+        return sum/10;
+    }  else if(pv2>pv1){
+        int carry  = addHelper(n1,n2.next,pv1,pv2-1,ans);
+        int sum = carry + n2.data;
+        ans.addFirst(sum%10);
+        return sum/10;
+    }  else{
+        int carry = addHelper(n1.next,n2.next,pv1-1,pv2-1,ans);
+        int sum = carry+n1.data+n2.data;
+        ans.addFirst(sum%10);
+        return sum/10;
+    }
+    }
+    public static LinkedList addTwoLists(LinkedList one, LinkedList two) {
+    LinkedList ans = new LinkedList();
+    int carry = addHelper(one.head,two.head,one.size,two.size,ans);
+    if(carry>0){
+    ans.addFirst(carry);}
+    return ans;
+   }
+  }
