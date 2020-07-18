@@ -29,7 +29,7 @@ public class Main {
           }
           data = newStack;
       }
-      
+      // ye to normally chale gi he but agar condition fail hoti hai to uppar wala if statement use krte hai
         tos++;
         data[tos] = val;
     }
