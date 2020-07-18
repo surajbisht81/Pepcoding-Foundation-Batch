@@ -37,6 +37,7 @@ public class Main {
             int idx = (front+i)%data.length;
             newQueue[i] = data[idx];
         }
+        front = 0;
         data = newQueue;
       }
         int idx = (front + size) % data.length;
