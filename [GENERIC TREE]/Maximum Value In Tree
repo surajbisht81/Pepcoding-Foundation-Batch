@@ -1,10 +1,14 @@
-public static int max(Node node) {
+
+  public static int max(Node node) {
       int maxNode = 0;
     for(int i = 0; i<node.children.size(); i++){
         int currNode = max(node.children.get(i));
-        maxNode = Math.max(maxNode,currNode);
+        if(currNode>maxNode){
+            maxNode = currNode;
+        }
     }
-    int m = Math.max(maxNode,node.data);
-    return m;
-    //return maxNode;
+    // return kro jo ki maximum ho such that 
+    // jo currNode mein value aaye gaa wo check Kre gaa ki maxNode
+    // ki value se jada badi hai ya choti
+    return Math.max(maxNode,node.data);
   }
