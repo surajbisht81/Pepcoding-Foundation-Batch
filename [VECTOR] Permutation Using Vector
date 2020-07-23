@@ -1,0 +1,58 @@
+ch -> a
+ch -> b
+s.substr(0,i) ->  s.substr(i) -> c
+s.substr(0,i) -> c s.substr(i) -> 
+s.substr(0,i) ->  s.substr(i) -> bc
+s.substr(0,i) -> b s.substr(i) -> c
+s.substr(0,i) -> bc s.substr(i) -> 
+s.substr(0,i) ->  s.substr(i) -> cb
+s.substr(0,i) -> c s.substr(i) -> b
+s.substr(0,i) -> cb s.substr(i) -> 
+abc
+bac
+bca
+acb
+cab
+cba
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<string> permuation_withDupli_01(string str)
+{
+    if (str.length() == 1)
+    {
+        vector<string> base;
+        base.push_back(str);
+        return base;
+    }
+
+    char ch = str[0];
+    cout<<"ch -> "<<ch<<endl;
+    vector<string> SmallAns = permuation_withDupli_01(str.substr(1));
+    vector<string> myAns;
+
+    for (string s : SmallAns)
+    {
+        for (int i = 0; i <= s.length(); i++)
+        {
+          cout<<"s.substr(0,i) -> "<< s.substr(0,i)<<" "<< "s.substr(i) -> "<< s.substr(i)<< endl;
+            myAns.push_back(s.substr(0, i) + ch + s.substr(i));
+        }
+    }
+
+    return myAns;
+}
+
+int main(){
+  string str = "abc";
+  vector<string> vec = permuation_withDupli_01(str);
+  for(auto x : vec){
+    cout<<x<<endl;}
+  
+  
+  return 0;
+}
