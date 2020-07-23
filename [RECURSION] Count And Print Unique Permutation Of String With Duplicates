@@ -1,0 +1,51 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int countPerm(string str, string ans){
+    if(str.length()==0){
+        return 1;
+    }
+    int count  = 0;
+    vector<bool> visited(26,false);
+    for(size_t i = 0; i<str.length(); i++){
+        int chk = str[i] - 'a';
+        if(visited[chk]==false){
+            visited[chk] = true;
+            string newString = str.substr(0,i) + str.substr(i+1);
+            count+=countPerm(newString,ans+str[i]);
+        }
+    }
+    return count;
+}
+void permPrint(string str, string ans)
+{
+    if (str.length() == 0)
+    {
+        cout << ans << endl;
+        return;
+    }
+    vector<bool> vis(26, false);
+
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        int k = str[i] - 'a';
+        if (vis[k] == false)
+        {
+            vis[k] = true;
+            string nstr = str.substr(0, i) + str.substr(i + 1);
+            permPrint(nstr, ans + str[i]);
+        }
+    }
+}
+
+int main() {
+    string str;
+    cin>>str;
+    cout<<countPerm(str,"")<<endl;
+    permPrint(str,"");
+    return 0;
+    
+}
