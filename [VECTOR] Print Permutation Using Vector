@@ -1,0 +1,77 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+vector<string> res;
+int cnt(string str, int left, int right, int count){
+    if(left==right){
+        count++;
+        return count;
+    }else{
+        for(int i = left; i<=right; i++){
+            swap(str[left],str[i]);
+            count = cnt(str,left+1,right,count);
+            swap(str[left],str[i]);
+        }
+    }
+    return count;
+}
+vector<string> permuation_withDupli_01(string str)
+{
+    if (str.length() == 1)
+    {
+        vector<string> base;
+        base.push_back(str);
+        return base;
+    }
+
+    char ch = str[0];
+    vector<string> SmallAns = permuation_withDupli_01(str.substr(1));
+    vector<string> myAns;
+
+    for (string s : SmallAns)
+    {
+        for (int i = 0; i <= s.length(); i++)
+        {
+            myAns.push_back(s.substr(0, i) + ch + s.substr(i));
+        }
+    }
+
+    return myAns;
+}
+
+void helper3(string str,string ans)
+{
+    if(str.length()==0){
+        cout<<ans<<endl;
+        return;
+    }else{
+        for(int i = 0; i<str.length(); i++){
+            char ch = str[i];
+            helper3(str.substr(0,i)+str.substr(i+1), ans+ch);
+        }
+    }
+    
+}
+
+int main() {
+    string str;
+    cin>>str;   
+    cout<<cnt(str,0,str.length()-1,0);
+    cout<<endl;
+     vector<string> rs = permuation_withDupli_01(str);
+    cout<<"[";
+    for(int i = 0; i<rs.size(); i++){
+        cout<<rs[i];
+        if(i!=rs.size()-1){
+            cout<<", ";
+        }
+    }
+    cout<<"]";
+    cout<<endl;
+    helper3(str,"");
+   
+    return 0;
+}
