@@ -11,7 +11,7 @@ int countPerm(string str, string ans){
     int count  = 0;
     vector<bool> visited(26,false);
     for(size_t i = 0; i<str.length(); i++){
-        int chk = str[i] - 'a';
+        int chk = str[i] - 'a' + 1;
         if(visited[chk]==false){
             visited[chk] = true;
             string newString = str.substr(0,i) + str.substr(i+1);
@@ -31,12 +31,12 @@ void permPrint(string str, string ans)
 
     for (size_t i = 0; i < str.length(); i++)
     {
-        int k = str[i] - 'a';
-        if (vis[k] == false)
+        int chk = str[i] - 'a' + 1;
+        if (vis[chk] == false)
         {
-            vis[k] = true;
-            string nstr = str.substr(0, i) + str.substr(i + 1);
-            permPrint(nstr, ans + str[i]);
+            vis[chk] = true;
+            string nStr = str.substr(0, i) + str.substr(i + 1);
+            permPrint(nStr, ans + str[i]);
         }
     }
 }
