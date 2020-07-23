@@ -1,0 +1,89 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+string code[] = {".;","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+// case 2
+vector<string> case2(string str){
+    if(str.length()==0){
+        string st = "";
+        vector<string> ash;
+        ash.push_back(st);
+        return ash;
+    }
+    char ch = str[0];
+    string roq = str.substr(1);
+    vector<string> resQues = case2(roq);
+    int idx = ch - '0';
+    string codes  = code[idx];
+    vector<string> vec;
+    for(int i = 0; i<resQues.size(); i++){
+        for(int j = 0; j<codes.size(); j++){
+            char chh = codes[j];
+            vec.push_back(chh+resQues[i]);
+        }
+    }
+    return vec;
+}
+//cose for counting
+int count(string str,int cnt ,string ans){
+    if(str.length()==0){
+        cnt++;
+        return cnt;
+    }
+    string roq = str.substr(1);
+    char ch = str[0];
+    int idx = ch - '0';
+    string codes = code[idx];
+    for(size_t i = 0; i<codes.length();i++){
+        char chh = codes[i];
+       cnt = count(roq,cnt,ans+chh);
+    }
+return cnt;
+}
+//case 1 to print using arraylist
+vector<string> helper(string str){
+    if(str.length()==0){
+        string st = "";
+        vector<string> ash;
+        ash.push_back(st);
+        return ash;
+    }
+    char ch = str[0];
+    string roq = str.substr(1);
+    vector<string> resQues = helper(roq);
+    int idx = ch - '0';
+    string codes  = code[idx];
+    vector<string> vec;
+    
+    for(int i = 0; i<codes.length();  i++){
+        char chh = codes[i];
+        for(int j = 0; j<resQues.size(); j++){
+            vec.push_back(chh+resQues[j]);
+        }
+    }
+    return vec;
+}
+int main() {
+    string str;
+    cin>>str;
+    helper(str);
+    cout<<count(str,0,"")<<endl;
+    vector<string> res = helper(str);
+   vector<string> Result = case2(str);
+    cout<<"[";  
+    for(int i = 0; i<Result.size(); i++){
+        cout<<Result[i];
+        if(i!=Result.size()-1){
+            cout<<", ";   
+        } 
+    }
+    cout<<"]";
+    cout<<endl;
+    for(auto x : res){
+        cout<<x<<endl;
+    }
+    return 0;
+}
