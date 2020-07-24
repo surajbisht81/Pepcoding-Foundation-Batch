@@ -1,0 +1,13 @@
+  
+  public static void levelOrder(Node node){
+    Queue<Node> queue = new LinkedList<>(); 
+    queue.add(node);
+    while(!queue.isEmpty()){
+        Node cp = queue.remove();
+        System.out.print(cp.data+" ");
+        for(int i = 0; i<cp.children.size(); i++){
+            queue.add(cp.children.get(i));
+        }
+    }
+    System.out.println(".");
+  }
