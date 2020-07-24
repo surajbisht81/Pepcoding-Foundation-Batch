@@ -1,0 +1,19 @@
+  public static void levelOrderLinewise(Node node){
+    Queue<Node> queue = new LinkedList<>(); 
+    queue.add(node);
+    queue.add(null); // denotes end of first level
+    while(queue.size()>0){
+        Node cp = queue.remove();
+        if(cp==null){
+            System.out.println();
+            if(queue.size()>0){// already having node
+                queue.add(null); // tthen only add null
+            }
+            continue;
+        }
+               System.out.print(cp.data+ " ");
+                for(Node child : cp.children){
+                    queue.add(child);
+                }
+        }
+    }
