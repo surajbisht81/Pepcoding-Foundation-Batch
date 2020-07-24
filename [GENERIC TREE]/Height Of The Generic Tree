@@ -1,4 +1,18 @@
- public static int height(Node node) {
+public static int height(Node node) {
+    if(node.children.size() ==0){
+        return 0;
+    }
+    int ch = 0;
+    for(int i = 0; i<node.children.size(); i++){
+        int chH = height(node.children.get(i));
+        if(chH>ch){
+            ch =chH;
+        }
+    }
+    return 1+ch;
+  }
+ or another approach
+public static int height(Node node) {
      int height = -1;
 
     for (Node child : node.children) {
