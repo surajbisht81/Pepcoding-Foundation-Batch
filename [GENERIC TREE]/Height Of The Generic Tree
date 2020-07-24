@@ -1,0 +1,11 @@
+ public static int height(Node node) {
+     int height = -1;
+
+    for (Node child : node.children) {
+      int newHeight = height(child);
+      height= Math.max(height, newHeight);
+    }
+    height += 1;
+
+    return height;
+  }
