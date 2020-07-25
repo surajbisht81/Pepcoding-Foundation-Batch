@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n,m;
+ 
+int boardPathCount(int si, int ei, string ans)
+{
+    if (si == ei)
+    {
+        //cout << ans << endl;
+        return 1;
+    }
+
+     int count = 0;
+    for (int dice = 1; dice <= m && si + dice <= ei; dice++)
+    {
+        count += boardPathCount(si + dice, ei, ans + to_string(dice));
+    }
+
+    return count;
+}
+vector<string> printPath(int si, int ei){
+    if(si==ei){
+        vector<string> base;
+        base.push_back("");
+        return base;
+    }
+   
+    vector<string> vec;
+    
+    for(int dice = 1; dice<=m and dice+si<=ei; dice++){
+       vector<string> recAns = printPath(si+dice,ei);
+        for(string s:recAns)
+        {
+            vec.push_back(to_string(dice)+s);
+        }
+    }
+    return vec;
+}
+void boardPath(int si, int ei, string ans)
+{
+    if (si == ei)
+    {
+        cout<<ans<<endl;
+        return ;
+    }
+    for (int dice = 1; dice <= m && si + dice <= ei; dice++)
+    {
+    boardPath(si + dice, ei, ans + to_string(dice));
+    }
+}
+int main() {
+    cin>>n>>m;
+    int x = boardPathCount(0,n,"");
+    cout<<x<<endl;
+    vector<string> res = printPath(0,n);
+   cout<<"[";
+    for(int i = 0; i<x; i++){
+        cout<<res[i];
+        if(i!=x-1){
+            cout<<", ";
+        }
+    }
+    cout<<"]"<<endl;
+   boardPath(0,n,"");
+    
+   return 0;
+}
