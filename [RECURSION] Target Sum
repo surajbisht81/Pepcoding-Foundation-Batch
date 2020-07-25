@@ -1,0 +1,69 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+vector<string> res;
+int countSum(vector<int>& vec, int idx, int target){
+    int n = vec.size();
+    if(idx==n){
+        if(target == 0){
+            return 1;
+        }
+        return 0;
+    }
+    
+    int count = 0;
+    count+= countSum(vec,idx+1,target - vec[idx]);
+    count+= countSum(vec,idx+1,target);
+ return  count;   
+}
+void printArray(vector<int>& vec, int idx,int target, string ans){
+    int n = vec.size();
+    if(idx==n){
+        if(target == 0){
+            res.push_back(ans);
+            return;
+        }
+        return;
+    }
+     printArray(vec,idx+1,target,ans);
+    printArray(vec,idx+1,target - vec[idx],ans+to_string(vec[idx])+" ");
+   
+}
+
+void printSubset(vector<int>& vec, int idx, int target, string ans){
+    int n = vec.size();
+    if(idx==n){
+        if(target==0){
+            cout<<ans<<endl;
+            return;
+        }
+        return;
+    }
+    printSubset(vec,idx+1,target,ans);
+    printSubset(vec,idx+1, target-vec[idx],ans+to_string(vec[idx])+" ");    
+}
+int main() {
+    int n;
+    cin>>n;
+    vector<int> vec(n);
+    for(int i = 0; i<n; i++){
+        cin>>vec[i];
+    }
+    int x;
+    cin>>x;
+    cout<<countSum(vec,0,x)<<endl;
+    printArray(vec,0,x,"");
+    cout<<"[";
+    for(size_t i = 0; i<res.size(); i++){
+        cout<<res[i];
+         if(i!=res.size()-1){
+            cout<<", ";
+        }
+    }
+    cout<<"]"<<endl;
+    printSubset(vec,0,x,"");
+    return 0;
+}
