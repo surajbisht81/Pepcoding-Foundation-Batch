@@ -26,3 +26,35 @@ public static void levelOrderLinewiseZZ(Node node){
        }
    }
  }
+
+or use thiss method
+
+
+ public static void levelOrderLinewiseZZ(Node node){
+   Stack<Node> parent = new Stack<> ();
+   Stack<Node> child = new Stack<> ();
+   boolean reverse = false;
+   parent.add(node);
+   while(parent.size()>0){
+       Node  cp = parent.pop();
+       System.out.print( cp.data +" ");
+       if(reverse == true){
+           
+           for(int i = cp.children.size()-1; i>=0; i--){
+               child.push(cp.children.get( i ));
+           }
+       }else{
+           for(int i = 0; i< cp.children.size(); i++){
+               child.push(cp.children.get(i));
+           }
+       }
+       if(parent.size()==0){
+           System.out.println();
+           reverse = !reverse; // or reverse = false
+           // now swap child and parent stacks
+           //Stack<Node> temp = parent;
+           parent = child;
+           child = new Stack<> ();
+       }
+   }
+ }
