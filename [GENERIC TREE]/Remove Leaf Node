@@ -1,5 +1,5 @@
-  public static void removeLeaves(Node node) {
-
+// recursive method
+public static void removeLeaves(Node node) {
     for(int i = node.children.size() -1; i>=0; i--){
         Node child = node.children.get(i);
         if(child.children.size()==0){
@@ -10,3 +10,20 @@
       removeLeaves(child);
     }
   }
+
+// iterative method
+public static void removeLeaves(Node node) {
+ArrayList<Node> useFullChild =  new ArrayList<> ();
+for(int i  = 0; i<node.children.size(); i++){
+    Node currNode = node.children.get(i);
+    if(currNode.children.size()!=0)
+    {
+        useFullChild.add(currNode);
+    }
+    
+}
+node.children = useFullChild; //non leaf nodes stored
+for(int i = 0; i<node.children.size(); i++){ // node remove childs of non leaf node
+    removeLeaves(node.children.get(i));
+}   
+}
