@@ -1,0 +1,17 @@
+  public static boolean find(Node node, int data) {
+    // write your code here
+    if(node==null){
+        return false;
+    }
+    if(node.data==data){
+        return true;
+    }
+     for(Node child: node.children){
+     boolean flag = find(child,data);
+     if(flag == true){
+         return true;
+     }
+    }
+    return false;
+    
+  }
