@@ -1,4 +1,4 @@
- public static void mirror(Node node){
+public static void mirror(Node node){
     // write your code here
     
     if(node==null){
@@ -7,8 +7,21 @@
     if(node.children.size()<2){
         return;
     }
+    Collections.reverse(node.children);  // reverse(children.begin(), children.end(); where children if array with size 2<= 
     for(int i = 0; i<node.children.size(); i++){
         mirror(node.children.get(i));
     }
-     Collections.reverse(node.children);
+     
+  }
+  
+  // approach 2:
+    public static void mirror(Node node){
+      for(int i = 0, j = node.children.size()-1;i<j; i++, j--){
+          Node temp =  node.children.get(i);
+          node.children.set(i,node.children.get(j));
+          node.children.set(j,temp);
+      }
+      for(int i = 0; i<node.children.size(); i++){
+          mirror(node.children.get(i));
+      }
   }
