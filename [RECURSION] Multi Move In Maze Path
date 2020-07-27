@@ -1,0 +1,100 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int mazePathCount(int sr, int sc, int er, int ec){
+    if(sr==er and sc == ec){
+        return 1;
+    }
+    int count = 0;
+    // horizontal jumps
+    for(int i = 1; sr+i<=er; i++){   // 'i' is initialized by 1 because it can make min 1 jump 
+        count+=mazePathCount(sr+i,sc,er,ec);
+    }
+    //vertically
+    for(int i = 1; sc+i<=ec; i++){
+        count+=mazePathCount(sr,sc+i,er,ec);
+    }
+    // diagonally
+    for(int i = 1; sr+i<=ec and sc+i<=er; i++){
+        count+=mazePathCount(sr+i, sc+i, er,ec);
+    }    
+    return count;
+}
+vector<string> mazepath_multiHVD_01(int sr, int sc, int er, int ec)
+{
+    if (sr == er && sc == ec)
+    {
+        vector<string> base;
+        base.push_back("");
+        return base;
+    }
+
+    vector<string> myAns;
+    for (int jump = 1; sc + jump <= ec; jump++)
+    {
+        vector<string> Hori = mazepath_multiHVD_01(sr, sc + jump, er, ec);
+        for (string s : Hori)
+            myAns.push_back("H" + to_string(jump) + s);
+    }
+
+  
+    for (int jump = 1; sr + jump <= er; jump++)
+    {
+        vector<string> Verti = mazepath_multiHVD_01(sr + jump, sc, er, ec);
+        for (string s : Verti)
+            myAns.push_back("V" + to_string(jump) + s);
+    }
+      for (int jump = 1; sc + jump <= ec && sr + jump <= er; jump++)
+    {
+        vector<string> Diag = mazepath_multiHVD_01(sr + jump, sc + jump, er, ec);
+        for (string s : Diag)
+            myAns.push_back("D" + to_string(jump) + s);
+    }
+
+    return myAns;
+}
+void mazePathMulti(int sr, int sc, int er, int ec, string ans)
+{
+    if (sr == er && sc == ec)
+    {
+        cout << ans << endl;
+       return;
+    }
+    
+    for (int jump = 1; jump + sc <= ec; jump++)
+    {
+         mazePathMulti(sr, sc + jump, er, ec, ans + "H" + to_string(jump));
+    }
+    for (int jump = 1; jump + sr <= er; jump++)
+    {
+        mazePathMulti(sr + jump, sc, er, ec, ans + "V" + to_string(jump));
+    }
+
+    
+
+    for (int jump = 1; jump + sr <= er && jump + sc <= ec; jump++)
+    {
+         mazePathMulti(sr + jump, sc + jump, er, ec, ans + "D" + to_string(jump));
+    }
+
+}
+
+int main() {
+    int n,m;
+    cin>>n>>m;
+   cout<< mazePathCount(1,1,n,m)<<endl;
+    cout<<"[";
+    vector<string> res = mazepath_multiHVD_01(1,1,n,m);
+    for(int i = 0; i<res.size(); i++){
+        cout<<res[i];
+        if(i!=res.size()-1){
+            cout<<", ";
+        }
+    }
+    cout<<"]"<<endl;
+    mazePathMulti(1,1,m,n,"");
+    return 0;
+}
