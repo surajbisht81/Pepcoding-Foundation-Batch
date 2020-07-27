@@ -1,0 +1,95 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int mazePathCount(int sr, int sc, int er, int ec)
+{
+   if(sr==er and sc == ec){
+       return 1;
+   }
+    int count = 0;
+  if(sr<er)
+       count+=mazePathCount(sr+1,sc,er,ec);
+   
+  if(sc<ec)
+        count+=mazePathCount(sr,sc+1,er,ec);
+    
+    if(sc<ec and sr<er){
+        count+=mazePathCount(sr+1,sc+1,er,ec);
+    }
+    
+    
+    return count;
+}
+vector<string> mazepath_HVD_01(int sr, int sc, int er, int ec)
+{
+    if (sr == er && sc == ec)
+    {
+        vector<string> base;
+        base.push_back("");
+        return base;
+    }
+    vector<string> myAns;
+    if (sc  < ec)
+    {
+        vector<string> Hori = mazepath_HVD_01(sr, sc + 1, er, ec);
+        for (string s : Hori)
+            myAns.push_back("H" + s);
+    }
+
+   
+
+    if (sr  < er)
+    {
+        vector<string> Verti = mazepath_HVD_01(sr + 1, sc, er, ec);
+        for (string s : Verti)
+            myAns.push_back("V" + s);
+    }
+    
+     if (sc  < ec && sr  < er)
+    {
+        vector<string> Diag = mazepath_HVD_01(sr + 1, sc + 1, er, ec);
+        for (string s : Diag)
+            myAns.push_back("D" + s);
+    }
+
+    return myAns;
+}
+void mazePathPrint(int sr, int sc, int er, int ec, string ans){
+    if(sr==er and sc==ec){
+        cout<<ans<<endl;
+        return;
+    }
+    
+    if(sr<er){
+        mazePathPrint(sr+1,sc,er,ec,ans+"H");
+    }
+    if(sc<ec){
+        mazePathPrint(sr,sc+1,er,ec,ans+"V");
+    }
+    
+    if(sc<ec and sr<er){
+        mazePathPrint(sr+1,sc+1,er,ec,ans+"D");
+    }
+}
+int main() {
+   int n, m;
+    cin>>n>>m;
+    cout<<mazePathCount(0,0,n,m)<<endl;
+    
+    
+    cout<<"[";
+    vector<string> res = mazepath_HVD_01(0,0,n,m);
+    for(size_t i = 0; i<res.size(); i++){
+        cout<<res[i];
+        if(i!=res.size()-1){
+            cout<<", ";
+        }
+    }
+    cout<<"]"<<endl;
+    mazePathPrint(0,0,n,m,"");
+    return 0;
+}
