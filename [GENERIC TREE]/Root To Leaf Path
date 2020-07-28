@@ -11,12 +11,16 @@
          baseCase.add(node.data);
          return baseCase;
      }
+     
      for(Node child : node.children){
          recAns = nodeToRootPath(child,data);
          if(recAns.size()!=0)
          {
              recAns.add(node.data);
+             return recAns;
          }
+         
      }
- return new ArrayList<>();     
+ return new ArrayList<>();    
+     
  }
