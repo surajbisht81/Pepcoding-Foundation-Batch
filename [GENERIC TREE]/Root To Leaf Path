@@ -2,9 +2,6 @@
    
      ArrayList<Integer> recAns = new ArrayList <> ();
      // base case 
-     if(node==null){
-         return new  ArrayList<>();
-     }
      // main work
      if(node.data == data){
          ArrayList<Integer> baseCase =  new ArrayList<> ();
