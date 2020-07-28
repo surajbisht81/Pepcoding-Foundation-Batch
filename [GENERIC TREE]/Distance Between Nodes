@@ -1,5 +1,5 @@
-  public static int distanceBetweenNodes(Node node, int d1, int d2){
-       ArrayList<Integer> p1 = nodeToRootPath(node, d1);
+ public static int distanceBetweenNodes(Node node, int d1, int d2){
+         ArrayList<Integer> p1 = nodeToRootPath(node, d1);
     ArrayList<Integer> p2 = nodeToRootPath(node, d2);
 
     int i = p1.size() - 1;
@@ -9,8 +9,6 @@
       i--;
       j--;
     }
-    i++;  // can be done without this
-    j++; // can be done without this
     
-    return (i+j);
+    return (i+1+j+1);
   }
