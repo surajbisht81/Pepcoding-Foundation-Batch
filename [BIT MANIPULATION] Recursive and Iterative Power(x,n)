@@ -1,0 +1,52 @@
+
+int power(int x, int n) { // recursive
+	if (n == 0) {
+		return 1;
+	}
+
+	int res = power(x, n / 2);
+// if n  is odd
+	if (n & 1)
+
+	{
+		return x * res * res;
+	}
+
+	return x * res;
+}
+== iterative
+
+int main()
+{
+	c_p_c();
+	//ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int x = 2;
+	int n = 2;
+	int res = 1;
+	while (n > 0) {
+		if (n & 1) {
+			res *= x;
+		}
+		x *= x;
+		n >>= 1;
+	}
+	cout << res;
+
+	return 0;
+}
+
+
+=========
+
+int main()
+{
+	c_p_c();
+	//ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int x = 2;
+	int n = 2;
+	cout << power(x, n);
+
+
+	return 0;
+}
+
