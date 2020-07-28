@@ -9,8 +9,8 @@
       i--;
       j--;
     }
-    i++;
-    j++;
+    i++;  // can be done without this
+    j++; // can be done without this
     
     return (i+j);
   }
