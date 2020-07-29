@@ -1,0 +1,23 @@
+// we can check it if we now that they are mirror image of each others 
+
+public static boolean areMirror(Node left, Node right){
+      if(left.children.size()!=right.children.size()){
+          return false;
+      }
+      
+      for(int i = 0; i<left.children.size(); i++){
+          int j = left.children.size()-1-i;
+          Node newLeft =  left.children.get(i);
+          Node newRight = right.children.get(j);
+          if(areMirror(newLeft, newRight)==false){
+              return false;
+          }
+      }
+      return true;
+  }
+  
+  // calling areMirror(node,node)
+  
+  public static boolean IsSymmetric(Node node) {
+    return areMirror(node,node);
+  }
