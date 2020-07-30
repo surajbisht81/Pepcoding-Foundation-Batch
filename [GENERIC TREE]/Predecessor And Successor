@@ -1,0 +1,20 @@
+static Node predecessor;
+  static Node successor;
+  static int flag = 0;
+  public static void predecessorAndSuccessor(Node node, int data) {
+    // write your code here
+    if(flag==0){
+        if(node.data==data){
+            flag++;
+        }else{
+        predecessor = node;
+    }
+    }
+    else if(flag==1){
+        successor = node;
+        flag++;
+    }
+    for(Node child : node.children){
+        predecessorAndSuccessor(child,data);
+    }
+  }
