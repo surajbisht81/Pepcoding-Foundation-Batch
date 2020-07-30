@@ -1,0 +1,19 @@
+public static Node getTail(Node temp){
+      while(temp.children.size()>0){
+          temp = temp.children.get(0);
+      }
+      return temp;
+  }
+
+  public static void linearize(Node node){
+  for(Node child : node.children){
+      linearize(child);
+  }
+  while(node.children.size()>1){
+      int size = node.children.size();
+      Node secondLast = getTail(node.children.get(size-2));
+      Node lastNodeToConnect = node.children.remove(size-1);
+      secondLast.children.add(lastNodeToConnect);
+  }
+  
+  }
