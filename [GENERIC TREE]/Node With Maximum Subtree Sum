@@ -1,0 +1,29 @@
+static int mxsum = Integer.MIN_VALUE;
+  static Node mxNode = null;
+  public static int findMaxSubTree(Node node){
+      int mySum = node.data;
+      for(int i = 0; i<node.children.size(); i++){
+          mySum+=findMaxSubTree(node.children.get(i));
+      }
+      if(mySum>mxsum){
+          mxsum = mySum;
+          mxNode = node;
+      }
+      return mySum;
+      
+  }
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    int[] arr = new int[n];
+    String[] values = br.readLine().split(" ");
+    for (int i = 0; i < n; i++) {
+      arr[i] = Integer.parseInt(values[i]);
+    }
+
+    Node root = construct(arr);
+    // write y
+    findMaxSubTree(root);
+    System.out.println(mxNode.data + "@" + mxsum);
+  }
