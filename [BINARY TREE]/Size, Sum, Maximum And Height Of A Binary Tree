@@ -18,7 +18,7 @@
   }
   public static int max(Node node) {
     if(node == null){
-        return 0;
+        return INTEGER_MIN_VALUE;
     }
 
    int left =  max(node.left);
