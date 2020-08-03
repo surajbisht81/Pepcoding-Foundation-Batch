@@ -1,22 +1,24 @@
-  public static void levelOrder(Node node) {
+public static void levelOrder(Node node) {
     // write your code here
     Queue<Node> queue =  new LinkedList<> ();
     queue.add(node);
+    queue.add(null);
     while(queue.size()!=0){
-       int currNode = queue.size();
-       if(currNode == 0){break;}
-       while(currNode>0){
-           Node nodeNew = queue.peek();
-           System.out.print(nodeNew.data+" ");
-           queue.remove();
-           if(nodeNew.left!=null){
-               queue.add(nodeNew.left);
-           }
-           if(nodeNew.right!=null){
-               queue.add(nodeNew.right);
-           }
-           currNode--;
-       }
-       System.out.println();
+        Node cp =  queue.remove();
+        if(cp == null){
+            System.out.println();
+            if(queue.size()!=0){
+                queue.add(null);
+            }
+        }else{
+            System.out.print(cp.data +" ");
+            if(cp.left !=null){
+                queue.add(cp.left);
+            }
+            if(cp.right!=null){
+                queue.add(cp.right);
+            }
+        }
     }
+    
   }
