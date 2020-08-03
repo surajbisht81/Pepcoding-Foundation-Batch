@@ -1,0 +1,31 @@
+public static class pair{
+      Node node;
+      int state = - 1;
+  }
+
+  public static void IterativePreandPostOrder(Node root) {
+    Stack<pair> st = new Stack<> ();
+    pair rp =  new pair();
+    rp.node = root;
+    st.push(rp);
+    String pre = "";
+    String post = "";
+    while(st.size()>0){
+        pair cp = st.peek();
+        if(cp.state == -1){
+            pre+=cp.node.data+" ";
+            cp.state++;
+        }else if(cp.state < cp.node.children.size()){
+            pair np =  new pair();
+            np.node = cp.node.children.get(cp.state);
+            st.push(np);
+            cp.state++;
+        }else{
+            post+=cp.node.data +" ";
+            st.pop();
+        }
+    }
+    System.out.println(pre);
+    System.out.println(post);
+    
+  }
