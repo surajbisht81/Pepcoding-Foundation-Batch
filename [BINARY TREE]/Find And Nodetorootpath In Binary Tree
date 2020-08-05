@@ -1,0 +1,48 @@
+  public static boolean find(Node node, int data){
+    if(node==null){
+        return false;
+    }
+    
+    if(node.data==data){
+        return true;
+    }
+    boolean ansLeft = find(node.left,data);
+    if(ansLeft == true){
+        return true;
+    }
+    
+    boolean ansRight = find(node.right,data);
+    if(ansRight==true)
+    {
+        return true;
+    }
+    
+    
+    return false;
+  }
+
+  public static ArrayList<Integer> nodeToRootPath(Node node, int data){
+    // write your code here
+    if(node==null){
+        ArrayList<Integer> baseCase =  new  ArrayList<>();
+        return baseCase;
+    }
+    if(node.data == data)
+    {
+       ArrayList<Integer> Found = new ArrayList<>();
+      Found.add(node.data);
+      return Found;
+    }
+    ArrayList<Integer> ansLeft =  nodeToRootPath(node.left, data);
+    if(ansLeft.size()!=0){
+        ansLeft.add(node.data);
+        return ansLeft;
+    }
+    ArrayList<Integer> ansRight =  nodeToRootPath(node.right,data);
+    if(ansRight.size()!=0){
+        ansRight.add(node.data);
+        return ansRight;
+    }
+    
+     return new ArrayList<>();
+  }
