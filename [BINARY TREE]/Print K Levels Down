@@ -10,6 +10,7 @@ public static void printKLevelsDown(Node node, int k){
     System.out.println(node.data);
     return;
     }
+    //k-- bhi work kre gaa
     printKLevelsDown(node.left,k-1);
     printKLevelsDown(node.right,k-1);
     
