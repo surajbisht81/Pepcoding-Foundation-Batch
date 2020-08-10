@@ -1,0 +1,35 @@
+static class helper{
+      int ht = -1;
+      boolean bal = true;
+  }
+  public static helper checkIsBalanced(Node node){
+      if(node == null){
+          return new helper();
+      }
+      helper la = checkIsBalanced(node.left);
+      helper ra = checkIsBalanced(node.right);
+      helper myans = new helper();
+      myans.bal = la.bal && ra.bal && (la.ht-ra.ht)>= -1 && (la.ht-ra.ht)<=1;
+      myans.ht = Math.max(la.ht, ra.ht) + 1;
+      return myans;
+  }
+  
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    Integer[] arr = new Integer[n];
+    String[] values = br.readLine().split(" ");
+    for (int i = 0; i < n; i++) {
+      if (values[i].equals("n") == false) {
+        arr[i] = Integer.parseInt(values[i]);
+      } else {
+        arr[i] = null;
+      }
+    }
+
+    Node root = construct(arr);
+    helper ans = checkIsBalanced(root);
+    System.out.println(ans.bal);
+  }
+
+}
