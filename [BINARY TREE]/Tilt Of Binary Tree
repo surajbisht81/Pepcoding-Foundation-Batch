@@ -1,0 +1,15 @@
+ static int getTilt = 0;
+  public static int traverse(Node root)
+    {
+        if (root == null )
+            return 0;
+        int left = traverse(root.left);
+        int right = traverse(root.right);
+        getTilt += Math.abs(left-right);
+        return left + right + root.data;
+    }
+  public static int tilt(Node node){
+    // write your code here to set the tilt data member
+    traverse(node);
+    return getTilt;
+  }
