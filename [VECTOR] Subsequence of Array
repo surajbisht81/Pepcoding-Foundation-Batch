@@ -1,0 +1,71 @@
+/* Author : Aryaveer Singh */
+
+#include<bits/stdc++.h>
+#include <cstdio>
+#include <cstring>
+#include <cmath>
+#include <cstring>
+#include <chrono>
+#include <complex>
+#define endl "\n"
+#define ll long long int
+#define vi vector<int>
+#define vll vector<ll>
+#define vvi vector < vi >
+#define pii pair<int,int>
+#define pll pair<long long, long long>
+#define mod 1000000007
+#define inf 1000000001
+#define all(c) c.begin(),c.end()
+#define mp(x,y) make_pair(x,y)
+#define mem(a,val) memset(a,val,sizeof(a))
+#define eb emplace_back
+#define pb push_back
+#define f first
+#define s second
+#define MAXIMUM 10000
+using namespace std;
+
+// void c_p_c()
+// {
+// 	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+// #ifndef ONLINE_JUDGE
+// 	freopen("input.txt", "r", stdin);
+// 	freopen("output.txt", "w", stdout);
+// #endif
+// }
+vi ans;
+vvi res;
+void recur(std::vector<int> & vec, int idx = 0) {
+	if (idx == vec.size()) {
+		return;
+	}
+
+	ans.pb(vec[idx]);
+	res.pb(ans);
+	recur(vec, idx + 1);
+	ans.pop_back();
+	recur(vec, idx + 1);
+
+}
+
+int main()
+{
+	//c_p_c();
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+	vi vec = {1, 2, 2};
+	recur(vec);
+	for (int i = 0; i < res.size(); ++i)
+	{
+		for (int j = 0; j < res[i].size(); ++j)
+		{
+			cout << res[i][j];
+		}
+		cout << endl;
+	}
+
+
+	return 0;
+}
+
