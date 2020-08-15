@@ -1,0 +1,32 @@
+ public static boolean finder(Node node, int data){
+      if(node == null){
+          return false;
+      }
+      if(data> node.data){
+          return finder(node.right, data);
+      }else if(node.data>data){
+          return finder(node.left, data);
+      }else
+      {
+          return true;
+      }
+  }
+  public static void helper(Node root, Node node, int data){
+      if(node==null){
+          return ;
+      }
+      helper(root,node.left, data); 
+      int comp = data - node.data;
+      if(comp >  node.data){
+          if(finder(root, comp)==true){
+              System.out.println(node.data +" " + comp);
+          }
+      }
+      helper(root,node.right, data);
+      
+  }
+  
+  
+  ====================
+  helper(root, root, data);
+  ======================
