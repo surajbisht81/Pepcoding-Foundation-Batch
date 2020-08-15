@@ -1,0 +1,14 @@
+
+  public static int lca(Node node, int d1, int d2) {
+    
+    int nodeValue = node.data;
+
+    if(d1> nodeValue && d2> nodeValue ){
+        return lca(node.right, d1,d2);
+    }else if(nodeValue >  d1 && nodeValue >  d2){
+        return lca(node.left, d1, d2);
+    }else{
+        return node.data;
+    }
+    //return nodeValue;
+  }
