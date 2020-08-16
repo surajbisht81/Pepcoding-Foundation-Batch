@@ -30,3 +30,44 @@
   ====================
   helper(root, root, data);
   ======================
+METHOD 2 : 
+public static void helper(Node root, ArrayList<Integer> ans){
+      if(root==null){
+          return ;
+      }
+     
+     
+     helper(root.left,ans);
+     ans.add(root.data);
+     
+     helper(root.right,ans);
+  }
+  
+  
+  
+  --------- 
+  
+  
+    Node root = construct(arr);
+    ArrayList<Integer> ans = new ArrayList<>();
+    helper(root,ans);
+    int i = 0; 
+    int j = ans.size()-1;
+    
+    while(i<j){
+        int l = ans.get(i);
+        int r = ans.get(j);
+        if(l+r > data){
+            j--;
+        }else if(l+r < data){
+            i++;
+        }else{
+            System.out.println(ans.get(i) +" "+  ans.get(j) +" ");
+            i++;
+            j--;
+        }
+    }
+    
+    
+    
+    
