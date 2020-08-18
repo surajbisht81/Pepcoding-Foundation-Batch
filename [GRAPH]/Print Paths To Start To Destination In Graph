@@ -1,0 +1,13 @@
+  public static void printPaths(int src, int dest, boolean[] visited, String ans,ArrayList<Edge>[] graph ) {
+      if (src == dest) {
+         System.out.println(ans);
+         return;
+      }
+      visited[src] = true;
+      for (Edge x : graph[src]) {
+         if (!visited[x.nbr]) {
+            printPaths(x.nbr, dest, visited, ans + x.nbr,graph);
+         }
+      }
+      visited[src] = false;
+   }
