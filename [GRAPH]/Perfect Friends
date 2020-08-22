@@ -1,0 +1,64 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    
+    static class  Edge{
+        int src;
+        int nbr;
+        Edge(int s, int n){
+            this.src = s;
+            this.nbr = n;
+        }
+    }
+   
+
+   public static void main(String[] args) throws Exception {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    ArrayList<Edge>[] graph = new ArrayList[n];
+    for(int i = 0; i< n; i++){
+        graph[i] = new ArrayList <> ();
+    }
+    int k = scn.nextInt();
+    
+    for(int i = 0; i < k; i++){
+        int src = scn.nextInt();
+        int nbr = scn.nextInt();
+        graph[src ].add(new Edge(src,nbr));
+        graph[nbr].add(new Edge (nbr,src) );
+    }
+    ArrayList<ArrayList<Integer>> comps =  new ArrayList<> ();
+    boolean[]  visited = new boolean[ n ];
+    for(int v = 0; v<graph.length; v++){
+        if(visited[v] == false){
+            ArrayList<Integer> scomp =  new ArrayList<> ();
+            getSC(graph, v, visited, scomp);
+            comps.add(scomp);
+        }
+    }
+    
+    int pairs = 0;
+    
+    for(int i = 0; i < comps.size(); i++){
+        int ithsize = comps.get(i).size();
+        for(int j =  i +1; j<comps.size(); j++){
+            int subpair = ithsize*comps.get(j).size();
+            pairs+=subpair;
+        }
+    }
+    
+    System.out.println(pairs);
+   }
+   public static void getSC(ArrayList<Edge>[] graph, int start, boolean[] visited, ArrayList<Integer> ans){
+       visited[start] =  true;
+       ans.add(start);
+       for(int x = 0; x <graph[start].size(); x++){
+           Edge ce = graph[start].get(x);
+           if(visited[ce.nbr] ==  false){
+               getSC(graph, ce.nbr, visited, ans);
+           }
+       }
+   }
+
+}
