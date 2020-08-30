@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+   public static void main(String[] args) throws Exception {
+      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+      int n = Integer.parseInt(br.readLine());
+      int[] arr = new int[n];
+
+      for (int i = 0; i < n; i++) {
+         arr[i] = Integer.parseInt(br.readLine());
+      }
+
+      int k = Integer.parseInt(br.readLine());
+      // write your code here
+       PriorityQueue<Integer> pq = new PriorityQueue<>(); 
+     int i = 0, j = 0;
+     while(pq.size() <=k ){
+         pq.add(arr[j]);
+         j++;
+     }
+     while(i < arr.length)
+     {
+         if(j<arr.length){
+             pq.add(arr[j]);
+             j++;
+         }
+       
+         arr[i] = pq.remove();
+         i++;
+     }
+ 
+        
+           for( i = 0; i < n; i++) 
+            System.out.println(arr[i] ); 
+   }
+
+}
