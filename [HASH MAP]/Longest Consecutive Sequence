@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) throws Exception {
+    // write your code here
+    Scanner scn = new Scanner(System.in);
+    int n =  scn.nextInt();
+    int[]  arr = new int[n];
+    for(int i = 0; i <  n ; i++){
+        arr[i] = scn.nextInt();
+    }
+    HashMap<Integer, Integer> map = new HashMap<> ();
+    for(int i = 0; i< n ; i++){
+        if(map.containsKey(arr[i])== false){
+            map.put(arr[i], i);
+        }
+    }
+    int globalStartPoint = 0, globalEndPoint = 0, localStartPoint = 0, localEndPoint = 0;
+    while( localEndPoint <= 15){
+        if(map.containsKey(localEndPoint)){
+            localEndPoint++;
+        }else{
+            if(localEndPoint - localStartPoint > globalEndPoint - globalStartPoint){
+                globalStartPoint = localStartPoint;
+                globalEndPoint =  localEndPoint;
+                
+            }
+            else if( localEndPoint - localStartPoint == globalEndPoint - globalStartPoint){
+            if(map.containsKey(localStartPoint) && map.containsKey(globalStartPoint)&& map.get(localStartPoint) < map.get(globalStartPoint)){
+                globalStartPoint = localStartPoint;
+                globalEndPoint =  localEndPoint;
+            }
+            
+        }
+         localStartPoint=localEndPoint+1;
+        localEndPoint++;
+    }
+    }
+    if(localEndPoint - localStartPoint > globalEndPoint - globalStartPoint){
+                globalStartPoint = localStartPoint;
+                globalEndPoint =  localEndPoint;
+                
+            }
+            else if( localEndPoint - localStartPoint == globalEndPoint - globalStartPoint){
+           if(map.containsKey(localStartPoint) && map.containsKey(globalStartPoint)&& map.get(localStartPoint) < map.get(globalStartPoint)){
+                globalStartPoint = localStartPoint;
+                globalEndPoint =  localEndPoint;
+            }
+            
+        }
+         
+        
+        for(int i = globalStartPoint; i< globalEndPoint; i++){
+            System.out.println(i);
+        }
+ }
+
+}
