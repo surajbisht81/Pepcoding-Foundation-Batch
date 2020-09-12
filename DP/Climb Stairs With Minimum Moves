@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int n =  scn.nextInt();
+        
+        int [] arr = new int[n];
+        
+        for(int i = 0; i < n ; i++){
+            arr[i] =  scn.nextInt();
+        }
+    
+        int jump = findMinJump(arr);
+        System.out.println(jump);
+   }
+   public static int findMinJump(int[] arr){
+       int [] dp = new int[arr.length];
+       dp[dp.length-1] = 0;
+       
+       for(int i = dp.length-2; i>=0; i--){
+           if(arr[i]==0){
+               dp[i] =  Integer.MAX_VALUE;
+           }else{
+               int minJump =  Integer.MAX_VALUE;
+               for(int j = 1; i + j < arr.length && j <= arr[i] ; j++){
+                   if(minJump > dp[i+j]){
+                       minJump = dp[i+j];
+                   }
+               }
+               if(minJump != Integer.MAX_VALUE){
+                   dp[i] = minJump + 1;
+                   
+               }else{
+                   dp[i] = Integer.MAX_VALUE;
+               }
+           }
+       }
+       return dp[0];
+   }
+}
