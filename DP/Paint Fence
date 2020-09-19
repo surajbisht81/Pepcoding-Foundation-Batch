@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int k = scn.nextInt();
+        
+        int same = 0;
+        int diff = k;
+        
+        for(int i = 1; i < n; i++){
+            
+            int nsame = diff;
+            int ndiff = ( same + diff ) * ( k - 1 );
+            
+            same = nsame;
+            diff = ndiff;
+
+        }
+        System.out.println( same + diff );
+    }
+}
